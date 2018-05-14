@@ -17,7 +17,9 @@ mix.sass('resources/assets/sass/frontend/app.scss', 'public/css/frontend.css')
     .js([
         'resources/assets/js/backend/before.js',
         'resources/assets/js/backend/app.js',
-        'resources/assets/js/backend/after.js'
+        'public/js/chosen_v1.8.3/chosen.jquery.js',
+        'resources/assets/js/backend/after.js',
+        'public/js/cleave/dist/cleave.js',
     ], 'public/js/backend.js');
 
 if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {

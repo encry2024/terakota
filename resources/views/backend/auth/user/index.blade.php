@@ -72,4 +72,38 @@
         </div><!--row-->
     </div><!--card-body-->
 </div><!--card-->
+
+<form class="modal fade form-horizontal" tabindex="-1" role="dialog" id="assign_shift_modal" method="POST">
+    {{ csrf_field() }}
+    {{ method_field('PATCH') }}
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="icon-clock"></i> Assign Shift</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label for="shift" class="col-md-2 form-control-label" style="line-height: 3;">Shift</label>
+
+                    <div class="col-md-10">
+                        <select name="shift" id="shift_dropdown" class="form-control">
+                            <option value=""></option>
+                            @foreach ($shifts as $shift)
+                                <option value="{{ $shift->id }}">{{ $shift->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-dark" id="assign_shift_btn">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</form>
 @endsection

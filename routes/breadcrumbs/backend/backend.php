@@ -6,3 +6,8 @@ Breadcrumbs::register('admin.dashboard', function ($breadcrumbs) {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/log-viewer.php';
+require __DIR__.'/product.php';
+require __DIR__.'/category.php';
+require __DIR__.'/shift.php';
+require __DIR__.'/dining.php';
+require __DIR__.'/discount.php';

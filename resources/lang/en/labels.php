@@ -33,6 +33,206 @@ return [
     ],
 
     'backend' => [
+        'discounts' => [
+            'create'              => 'Create discount',
+            'deleted'             => 'Deleted discounts',
+            'edit'                => 'Edit discount',
+            'management'          => 'discount Management',
+            'list'                => 'discount List',
+
+            'table' => [
+                'id'        => 'ID',
+                'name'      => 'discount Name',
+                'discount'  => 'Discount',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'deleted_at' => 'Deleted At',
+                'total'      => 'discount total|discounts total'
+            ],
+
+            'tabs' => [
+                'titles' => [
+                    'overview' => 'Overview',
+                    'history'  => 'History',
+                ],
+
+                'content' => [
+                    'overview' => [
+                        'id'        => 'ID',
+                        'name'      => 'discount Name',
+                        'discount'  => 'Discount',
+                        'created_at' => 'Created At',
+                        'updated_at' => 'Updated At',
+                        'deleted_at' => 'Deleted At',
+                    ],
+                ],
+            ],
+
+            'view' => ':name',
+        ],
+
+        'dinings' => [
+            'create'              => 'Create Dining',
+            'deleted'             => 'Deleted Dinings',
+            'edit'                => 'Edit Dining',
+            'management'          => 'Dining Management',
+            'list'                => 'Dining List',
+
+            'table' => [
+                'id'        => 'ID',
+                'name'      => 'Dining Name',
+                'price'      => 'Price',
+                'description' => 'Description',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'deleted_at' => 'Deleted At',
+                'total'      => 'dining total|dinings total'
+            ],
+
+            'tabs' => [
+                'titles' => [
+                    'overview' => 'Overview',
+                    'history'  => 'History',
+                ],
+
+                'content' => [
+                    'overview' => [
+                        'id'        => 'ID',
+                        'name'      => 'Dining Name',
+                        'price'      => 'Price',
+                        'description' => 'Description',
+                        'created_at' => 'Created At',
+                        'updated_at' => 'Updated At',
+                        'deleted_at' => 'Deleted At',
+                    ],
+                ],
+            ],
+
+            'view' => ':name',
+        ],
+
+        'shifts' => [
+            'create'              => 'Create Shift',
+            'deleted'             => 'Deleted Shifts',
+            'edit'                => 'Edit Shift',
+            'management'          => 'Shift Management',
+            'list'                => 'Shift List',
+
+            'table' => [
+                'id'        => 'ID',
+                'name'      => 'Shift Name',
+                'user'      => 'User',
+                'time_start' => 'Time Start',
+                'time_end' => 'Time End',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'deleted_at' => 'Deleted At',
+                'total'      => 'shift total|shifts total'
+            ],
+
+            'tabs' => [
+                'titles' => [
+                    'overview' => 'Overview',
+                    'history'  => 'History',
+                ],
+
+                'content' => [
+                    'overview' => [
+                        'id'        => 'ID',
+                        'name'      => 'Shift Name',
+                        'user'      => 'User',
+                        'time_start' => 'Time Start',
+                        'time_end' => 'Time End',
+                        'created_at' => 'Created At',
+                        'updated_at' => 'Updated At',
+                        'deleted_at' => 'Deleted At',
+                    ],
+                ],
+            ],
+
+            'view' => ':name',
+        ],
+
+        'categories' => [
+            'create'              => 'Create Category',
+            'deleted'             => 'Deleted Categories',
+            'edit'                => 'Edit Category',
+            'management'          => 'Category Management',
+            'list'                => 'Category List',
+
+            'table' => [
+                'id'        => 'ID',
+                'name'      => 'Name',
+                'product_count' => 'Product Count',
+                'created_at' => 'Created At',
+                'updated_at' => 'Updated At',
+                'deleted_at' => 'Deleted At',
+                'total'      => 'category total|categories total'
+            ],
+
+            'tabs' => [
+                'titles' => [
+                    'overview' => 'Overview',
+                    'history'  => 'History',
+                ],
+
+                'content' => [
+                    'overview' => [
+                        'id'        => 'ID',
+                        'name'      => 'Name',
+                        'product_count' => 'Product Count',
+                        'created_at' => 'Created At',
+                        'updated_at' => 'Updated At',
+                        'deleted_at' => 'Deleted At',
+                    ],
+                ],
+            ],
+
+            'view' => ':category',
+        ],
+
+        'products' => [
+            'create'              => 'Create Product',
+            'deleted'             => 'Deleted Products',
+            'edit'                => 'Edit Product',
+            'management'          => 'Product Management',
+            'list'                => 'Product List',
+
+            'table' => [
+                'id'        => 'ID',
+                'name'      => 'Name',
+                'category'  => 'Category',
+                'code'      => 'Code',
+                'price'     => 'Price',
+                'created_at'=> 'Created At',
+                'updated_at'=> 'Updated At',
+                'deleted_at'=> 'Deleted At',
+                'total'     => 'product total|products total'
+            ],
+
+            'tabs' => [
+                'titles' => [
+                    'overview' => 'Overview',
+                    'history'  => 'History',
+                ],
+
+                'content' => [
+                    'overview' => [
+                        'id'           => 'ID',
+                        'name'         => 'Name',
+                        'code'         => 'Product Code',
+                        'price'        => 'Product Price',
+                        'category'     => 'Category',
+                        'created_at'   => 'Created At',
+                        'updated_at'   => 'Updated At',
+                        'deleted_at'   => 'Deleted At',
+                    ],
+                ],
+            ],
+
+            'view' => ':product',
+        ],
+
         'access' => [
             'roles' => [
                 'create'     => 'Create Role',

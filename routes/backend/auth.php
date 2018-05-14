@@ -31,6 +31,9 @@ Route::group([
              * Specific User
              */
             Route::group(['prefix' => 'user/{user}'], function () {
+                // Shift
+                Route::patch('shift/assign', 'UserController@assignShift')->name('user.assign.shift');
+
                 // Account
                 Route::get('account/confirm/resend', 'UserConfirmationController@sendConfirmationEmail')->name('user.account.confirm.resend');
 

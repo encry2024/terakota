@@ -60223,6 +60223,8 @@ function addDeleteForms() {
  * Place any jQuery/helper plugins in here.
  */
 $(function () {
+    $("select").chosen();
+
     /**
      * Add the data-method="delete" forms to all delete links
      */
@@ -60274,6 +60276,14 @@ $(function () {
         }).then(function (result) {
             result.value && window.location.assign(link.attr('href'));
         });
+    }).on('click', 'a[name=assign_shift]', function () {
+        var link = $(this).data('href');
+
+        $("#assign_shift_modal").attr('action', link);
+    });
+
+    $("#assign_shift_modal").on('shown.bs.modal', function () {
+        $("#shift_dropdown").chosen("destroy").chosen();
     });
 });
 

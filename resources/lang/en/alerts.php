@@ -14,6 +14,47 @@ return [
     */
 
     'backend' => [
+        'discounts' => [
+            'created'             => 'Discount ":discount" was successfully created.',
+            'deleted'             => 'Discount ":discount" was successfully deleted.',
+            'deleted_permanently' => 'Discount ":discount" was deleted permanently.',
+            'restored'            => 'Discount ":discount" was successfully restored.',
+            'updated'             => 'Discount ":discount" was successfully updated.',
+        ],
+
+        'dinings' => [
+            'created'             => 'Dining ":dining" was successfully created.',
+            'deleted'             => 'Dining ":dining" was successfully deleted.',
+            'deleted_permanently' => 'Dining ":dining" was deleted permanently.',
+            'restored'            => 'Dining ":dining" was successfully restored.',
+            'updated'             => 'Dining ":dining" was successfully updated.',
+        ],
+
+        'shifts' => [
+            'created'             => 'Shift ":shift" was successfully created.',
+            'deleted'             => 'Shift ":shift" was successfully deleted.',
+            'deleted_permanently' => 'Shift ":shift" was deleted permanently.',
+            'restored'            => 'Shift ":shift" was successfully restored.',
+            'updated'             => 'Shift ":shift" was successfully updated.',
+            'assigned'            => 'User ":user" was successfully assigned to Shift ":shift"'
+        ],
+
+        'categories' => [
+            'created'             => 'Category ":category" was successfully created.',
+            'deleted'             => 'Category ":category" was successfully deleted.',
+            'deleted_permanently' => 'Category ":category" was deleted permanently.',
+            'restored'            => 'Category ":category" was successfully restored.',
+            'updated'             => 'Category ":category" was successfully updated.',
+        ],
+
+        'products' => [
+            'created'             => 'Product ":product" was successfully created.',
+            'deleted'             => 'Product ":product" was successfully deleted.',
+            'deleted_permanently' => 'Product ":product" was deleted permanently.',
+            'restored'            => 'Product ":product" was successfully restored.',
+            'updated'             => 'Product ":product" was successfully updated.',
+        ],
+
         'roles' => [
             'created' => 'The role was successfully created.',
             'deleted' => 'The role was successfully deleted.',

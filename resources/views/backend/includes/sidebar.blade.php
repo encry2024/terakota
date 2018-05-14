@@ -9,6 +9,26 @@
                 <a class="nav-link {{ active_class(Active::checkUriPattern('admin/dashboard')) }}" href="{{ route('admin.dashboard') }}"><i class="icon-speedometer"></i> {{ __('menus.backend.sidebar.dashboard') }}</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/category*')) }}" href="{{ route('admin.category.index') }}"><i class="icon-grid"></i> {{ __('menus.backend.sidebar.category') }}</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/product*')) }}" href="{{ route('admin.product.index') }}"><i class="icon-tag"></i> {{ __('menus.backend.sidebar.product') }}</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/shift*')) }}" href="{{ route('admin.shift.index') }}"><i class="icon-clock"></i> {{ __('menus.backend.sidebar.shift') }}</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/dining*')) }}" href="{{ route('admin.dining.index') }}"><i class="icon-grid"></i> {{ __('menus.backend.sidebar.dining') }}</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/discount*')) }}" href="{{ route('admin.discount.index') }}"><i class="icon-bag"></i> {{ __('menus.backend.sidebar.discount') }}</a>
+            </li>
+
             <li class="nav-title">
                 {{ __('menus.backend.sidebar.system') }}
             </li>

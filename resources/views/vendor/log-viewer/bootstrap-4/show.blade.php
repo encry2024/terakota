@@ -104,7 +104,7 @@
                                     </span>
                                     </td>
                                     <td>
-                                        {{ $entry->header }}
+                                        {!! $entry->header !!}
                                     </td>
                                     <td class="text-right">
                                         @if ($entry->hasStack())

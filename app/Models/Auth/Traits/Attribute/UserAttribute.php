@@ -182,6 +182,19 @@ trait UserAttribute
     /**
      * @return string
      */
+    public function getShiftButtonAttribute()
+    {
+        return '<a href="#"
+        data-href="'.route('admin.auth.user.assign.shift', $this).'"
+        data-toggle="modal"
+        data-target="#assign_shift_modal"
+        name="assign_shift"
+        class="dropdown-item">Assign Shift</a> ';
+    }
+
+    /**
+     * @return string
+     */
     public function getEditButtonAttribute()
     {
         return '<a href="'.route('admin.auth.user.edit', $this).'" class="btn btn-primary"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="'.__('buttons.general.crud.edit').'"></i></a>';
@@ -241,11 +254,11 @@ trait UserAttribute
     {
         if ($this->id != auth()->id() && $this->id != 1) {
             return '<a href="'.route('admin.auth.user.destroy', $this).'"
-                 data-method="delete"
-                 data-trans-button-cancel="'.__('buttons.general.cancel').'"
-                 data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
-                 data-trans-title="'.__('strings.backend.general.are_you_sure').'"
-                 class="dropdown-item">'.__('buttons.general.crud.delete').'</a> ';
+                data-method="delete"
+                data-trans-button-cancel="'.__('buttons.general.cancel').'"
+                data-trans-button-confirm="'.__('buttons.general.crud.delete').'"
+                data-trans-title="'.__('strings.backend.general.are_you_sure').'"
+                class="dropdown-item">'.__('buttons.general.crud.delete').'</a> ';
         }
 
         return '';
@@ -283,8 +296,8 @@ trait UserAttribute
         return '
     	<div class="btn-group btn-group-sm" role="group" aria-label="User Actions">
 		  '.$this->show_button.'
-		  '.$this->edit_button.'
-		
+          '.$this->edit_button.'
+
 		  <div class="btn-group" role="group">
 			<button id="userActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			  More
@@ -295,7 +308,8 @@ trait UserAttribute
 			  '.$this->change_password_button.'
 			  '.$this->status_button.'
 			  '.$this->confirmed_button.'
-			  '.$this->delete_button.'
+              '.$this->delete_button.'
+              '.$this->shift_button.'
 			</div>
 		  </div>
 		</div>';

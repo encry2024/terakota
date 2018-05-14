@@ -14,6 +14,66 @@ return [
     */
 
     'backend' => [
+        'discounts' => [
+            'title' => 'Discount',
+
+            'all'        => 'All Discounts',
+            'create'     => 'Create Discount',
+            'edit'       => 'Edit Discount',
+            'management' => 'Discount Management',
+            'main'       => 'Discounts',
+            'deleted'    => 'Deleted Discounts',
+            'view'       => ':discount'
+        ],
+
+        'dinings' => [
+            'title' => 'Dining',
+
+            'all'        => 'All Dinings',
+            'create'     => 'Create Dining',
+            'edit'       => 'Edit Dining',
+            'management' => 'Dining Management',
+            'main'       => 'Dinings',
+            'deleted'    => 'Deleted Dinings',
+            'view'       => ':dining'
+        ],
+
+        'shifts' => [
+            'title' => 'Shift',
+
+            'all'        => 'All Shifts',
+            'create'     => 'Create Shift',
+            'edit'       => 'Edit Shift',
+            'management' => 'Shift Management',
+            'main'       => 'Shifts',
+            'deleted'    => 'Deleted Shifts',
+            'view'       => ':shift'
+        ],
+
+        'categories' => [
+            'title' => 'Category',
+
+            'all'        => 'All Categories',
+            'create'     => 'Create Category',
+            'edit'       => 'Edit Category',
+            'management' => 'Category Management',
+            'main'       => 'Categories',
+            'deleted'    => 'Deleted Categories',
+            'view'       => ':category'
+        ],
+
+        'products' => [
+            'title' => 'Product',
+
+            'all'        => 'All Products',
+            'create'     => 'Create Product',
+            'edit'       => 'Edit Product',
+            'management' => 'Product Management',
+            'main'       => 'Products',
+            'deleted'    => 'Deleted Products',
+            'view'       => ':product'
+        ],
+
         'access' => [
             'title' => 'Access',
 
@@ -44,9 +104,14 @@ return [
         ],
 
         'sidebar' => [
+            'category'  => 'Categories',
+            'shift'     => 'Shifts',
+            'dining'    => 'Dinings',
+            'discount' => 'Discounts',
+            'product'   => 'Products',
             'dashboard' => 'Dashboard',
             'general'   => 'General',
-            'system'    => 'System',
+            'system'    => 'System'
         ],
     ],
 

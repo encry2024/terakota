@@ -3,6 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Auth\User;
+use App\Models\Product\Product;
+use App\Models\Category\Category;
+use App\Models\Shift\Shift;
+use App\Models\Dining\Dining;
+use App\Models\Discount\Discount;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -38,6 +43,51 @@ class RouteServiceProvider extends ServiceProvider
             $user = new User;
 
             return User::withTrashed()->where($user->getRouteKeyName(), $value)->first();
+        });
+
+        /*
+         * Allow this to select all products regardless of status
+         */
+        $this->bind('product', function ($value) {
+            $product = new Product;
+
+            return Product::withTrashed()->where($product->getRouteKeyName(), $value)->first();
+        });
+
+        /*
+         * Allow this to select all categories regardless of status
+         */
+        $this->bind('category', function ($value) {
+            $category = new Category;
+
+            return Category::withTrashed()->where($category->getRouteKeyName(), $value)->first();
+        });
+
+        /*
+         * Allow this to select all shifts regardless of status
+         */
+        $this->bind('shift', function ($value) {
+            $shift = new Shift;
+
+            return Shift::withTrashed()->where($shift->getRouteKeyName(), $value)->first();
+        });
+
+        /*
+         * Allow this to select all dinings regardless of status
+         */
+        $this->bind('dining', function ($value) {
+            $dining = new Dining;
+
+            return Dining::withTrashed()->where($dining->getRouteKeyName(), $value)->first();
+        });
+
+        /*
+         * Allow this to select all discounts regardless of status
+         */
+        $this->bind('discount', function ($value) {
+            $discount = new Discount;
+
+            return Discount::withTrashed()->where($discount->getRouteKeyName(), $value)->first();
         });
 
         parent::boot();

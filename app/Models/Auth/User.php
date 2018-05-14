@@ -34,6 +34,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'shift_id',
         'first_name',
         'last_name',
         'email',

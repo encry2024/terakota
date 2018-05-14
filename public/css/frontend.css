@@ -10003,3 +10003,238 @@ a.text-dark:focus {
   max-height: 90px;
 }
 
+.sidebar .nav .nav-item .nav-link:hover i,
+.sidebar .nav .nav-item .navbar .dropdown-toggle:hover i,
+.navbar .sidebar .nav .nav-item .dropdown-toggle:hover i {
+  color: #fff !important;
+}
+
+.navbar-nav .dropdown-menu {
+  position: static;
+  float: none;
+  margin-left: -4rem;
+}
+
+body {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.navbar {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.25rem 1rem;
+}
+
+.btn-product {
+  padding: 25px;
+  color: white;
+  background-color: #7400b9;
+  border-color: #6400a0 !important;
+}
+
+.btn-product:hover {
+  background-color: #8400d3;
+  border-color: #6400a0 !important;
+}
+
+.btn-product:active {
+  color: white;
+  background-color: #540087 !important;
+  border: 1px solid #44006d !important;
+}
+
+.btn-product:focus {
+  border: 1px solid #007ACC !important;
+}
+
+.btn:focus,
+.btn.focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.btn-info:not(:disabled):not(.disabled):active:focus,
+.btn-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-info.dropdown-toggle:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.five-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 105%;
+  width: 105%;
+}
+
+.numpad > .numkey {
+  display: -ms-flexbox;
+  width: 23.944%;
+  margin-bottom: 5px;
+  margin-left: 2.015px;
+  -ms-flex-direction: column;
+  border: 1px solid transparent;
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  -webkit-transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease,-webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+}
+
+#senior_numpad > .numpad > .numkey {
+  display: -ms-flexbox;
+  width: 23.944%;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  -ms-flex-direction: column;
+  border: 1px solid transparent;
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  -webkit-transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease,-webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+}
+
+.numkey {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 1.95rem 2.5rem;
+  font-size: 2rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.five-btns > .btn {
+  padding-left: 5px;
+  width: calc(20% - 1rem);
+  margin: .875em .5em;
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  padding: 25px 0px;
+  border: 1px solid transparent;
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  -webkit-transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: -webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease;
+  transition: box-shadow .1s ease,transform .1s ease,-webkit-box-shadow .1s ease,-webkit-transform .1s ease;
+}
+
+.btn-product > .product-body {
+  margin-left: -1.2rem;
+  padding-left: 10px;
+}
+
+.w-85 {
+  width: 85%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.table-item > .sub-item {
+  padding: 1px 1px;
+  margin-left: 5px;
+}
+
+.table-order > thead > tr {
+  font-size: 1rem;
+}
+
+.table-order > thead > tr > th {
+  font-weight: 400;
+}
+
+.table-order > tbody > tr {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.order-body {
+  padding: 0rem !important;
+}
+
+.order-body > table > thead > tr > th {
+  border-top: none !important;
+}
+
+.w-81 {
+  max-width: 81.333333%;
+}
+
+.dining_pad {
+  display: block;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  max-width: 100%;
+  width: 100%;
+}
+
+.dining_pad > .table-key {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  -ms-flex-direction: column;
+  border-radius: .28571429rem;
+}
+
+.table-key {
+  width: calc(10% - 1rem);
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 1.3755rem 0.5rem;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+

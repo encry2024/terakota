@@ -14,6 +14,31 @@ return [
     */
 
     'backend' => [
+        'discounts' => [
+            'delete_permanently' => 'Delete Permanently',
+            'restore_discount'    => 'Restore Discount'
+        ],
+
+        'dinings' => [
+            'delete_permanently' => 'Delete Permanently',
+            'restore_dining'    => 'Restore Dining'
+        ],
+
+        'shifts' => [
+            'delete_permanently' => 'Delete Permanently',
+            'restore_shift'    => 'Restore Shift'
+        ],
+
+        'categories' => [
+            'delete_permanently' => 'Delete Permanently',
+            'restore_category'    => 'Restore Category'
+        ],
+
+        'products' => [
+            'delete_permanently' => 'Delete Permanently',
+            'restore_product'       => 'Restore Product'
+        ],
+
         'access' => [
             'users' => [
                 'activate'           => 'Activate',

@@ -14,6 +14,46 @@ return [
     */
 
     'backend' => [
+        'discounts' => [
+            'already_exists'    => 'That discount already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this discount. Please try again.',
+            'delete_error'      => 'There was a problem deleting this discount. Please try again.',
+            'not_found'         => 'That discount does not exist.',
+            'update_error'      => 'There was a problem updating this discount. Please try again.',
+        ],
+
+        'dinings' => [
+            'already_exists'    => 'That dining already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this dining. Please try again.',
+            'delete_error'      => 'There was a problem deleting this dining. Please try again.',
+            'not_found'         => 'That dining does not exist.',
+            'update_error'      => 'There was a problem updating this dining. Please try again.',
+        ],
+
+        'shifts' => [
+            'already_exists'    => 'That shift already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this shift. Please try again.',
+            'delete_error'      => 'There was a problem deleting this shift. Please try again.',
+            'not_found'         => 'That shift does not exist.',
+            'update_error'      => 'There was a problem updating this shift. Please try again.',
+        ],
+
+        'categories' => [
+            'already_exists'    => 'That category already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this category. Please try again.',
+            'delete_error'      => 'There was a problem deleting this category. Please try again.',
+            'not_found'         => 'That category does not exist.',
+            'update_error'      => 'There was a problem updating this category. Please try again.',
+        ],
+
+        'products' => [
+            'already_exists'    => 'That product already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this product. Please try again.',
+            'delete_error'      => 'There was a problem deleting this product. Please try again.',
+            'not_found'         => 'That product does not exist.',
+            'update_error'      => 'There was a problem updating this product. Please try again.',
+        ],
+
         'access' => [
             'roles' => [
                 'already_exists'    => 'That role already exists. Please choose a different name.',

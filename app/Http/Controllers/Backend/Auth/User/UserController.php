@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Auth\User;
 
 use App\Models\Auth\User;
+use App\Models\Shift\Shift;
 use App\Http\Controllers\Controller;
 use App\Events\Backend\Auth\User\UserDeleted;
 use App\Repositories\Backend\Auth\RoleRepository;
@@ -39,8 +40,11 @@ class UserController extends Controller
      */
     public function index(ManageUserRequest $request)
     {
+        $shifts = Shift::all();
+
         return view('backend.auth.user.index')
-            ->withUsers($this->userRepository->getActivePaginated(25, 'id', 'asc'));
+            ->withUsers($this->userRepository->getActivePaginated(25, 'id', 'asc'))
+            ->withShifts($shifts);
     }
 
     /**
@@ -147,5 +151,14 @@ class UserController extends Controller
         event(new UserDeleted($user));
 
         return redirect()->route('admin.auth.user.deleted')->withFlashSuccess(__('alerts.backend.users.deleted'));
+    }
+
+    public function assignShift(User $user, ManageUserRequest $request)
+    {
+        $shift = $this->userRepository->assignShift($user, $request->only(
+            'shift'
+        ));
+
+        return redirect()->back()->withFlashSuccess($user->full_name . ' was successfully assigned to Shift "'.$user->shift->name.'"');
     }
 }

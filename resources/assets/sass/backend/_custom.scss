@@ -1,1 +1,9 @@
 // Here you can add other styles
+.sidebar .nav .nav-item .nav-link:hover i, .sidebar .nav .nav-item .navbar .dropdown-toggle:hover i, .navbar .sidebar .nav .nav-item .dropdown-toggle:hover i {
+    color: #fff !important;
+}
+
+body {
+    font-size: 12px;
+    font-weight: 600;
+}

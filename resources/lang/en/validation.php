@@ -120,6 +120,35 @@ return [
     'attributes' => [
 
         'backend' => [
+            'discounts' => [
+                'name'          => 'Dining Name',
+                'discount'      => 'Discount'
+            ],
+
+            'dinings' => [
+                'name'          => 'Dining Name',
+                'price'         => 'Price',
+                'description'   => 'Description',
+            ],
+
+            'shifts' => [
+                'name'          => 'Shift Name',
+                'time_start'    => 'Time Start',
+                'time_end'      => 'Time End',
+                'user'          => 'User',
+            ],
+
+            'categories' => [
+                'name'  => 'Category Name',
+            ],
+
+            'products' => [
+                'name'  => 'Product Name',
+                'category' => 'Category Name',
+                'code'  => 'Product Code',
+                'price' => 'Product Price'
+            ],
+
             'access' => [
                 'permissions' => [
                     'associated_roles' => 'Associated Roles',

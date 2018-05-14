@@ -14,6 +14,37 @@ return [
     */
 
     'backend' => [
+        'discounts' => [
+            'delete_discount_confirm'  => 'Are you sure you want to delete this discount permanently? Anywhere in the application that references this discount\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_deleted' => 'There are no deleted discounts.',
+            'restore_discount_confirm' => 'Restore this discount to its original state?',
+        ],
+
+        'dinings' => [
+            'delete_dining_confirm'  => 'Are you sure you want to delete this dining permanently? Anywhere in the application that references this dining\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_deleted' => 'There are no deleted dinings.',
+            'restore_dining_confirm' => 'Restore this dining to its original state?',
+        ],
+
+
+        'shifts' => [
+            'delete_shift_confirm'  => 'Are you sure you want to delete this shift permanently? Anywhere in the application that references this shift\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_deleted' => 'There are no deleted shifts.',
+            'restore_shift_confirm' => 'Restore this shift to its original state?',
+        ],
+
+        'categories' => [
+            'delete_category_confirm'  => 'Are you sure you want to delete this category permanently? Anywhere in the application that references this category\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_deleted' => 'There are no deleted categories.',
+            'restore_category_confirm' => 'Restore this category to its original state?',
+        ],
+
+        'products' => [
+            'delete_product_confirm'  => 'Are you sure you want to delete this product permanently? Anywhere in the application that references this product\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
+            'no_deleted' => 'There are no deleted products.',
+            'restore_product_confirm' => 'Restore this product to its original state?',
+        ],
+
         'access' => [
             'users' => [
                 'delete_user_confirm'  => 'Are you sure you want to delete this user permanently? Anywhere in the application that references this user\'s id will most likely error. Proceed at your own risk. This can not be un-done.',
@@ -32,7 +63,7 @@ return [
         'general' => [
             'all_rights_reserved' => 'All Rights Reserved.',
             'are_you_sure'        => 'Are you sure you want to do this?',
-            'boilerplate_link'    => 'Laravel 5 Boilerplate',
+            'boilerplate_link'    => 'Manda\'s Bulaluhan & Grill',
             'continue'            => 'Continue',
             'member_since'        => 'Member since',
             'minutes'             => ' minutes',

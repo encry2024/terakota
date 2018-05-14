@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Backend\Auth;
 
+use Auth;
 use App\Models\Auth\User;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
@@ -18,6 +19,7 @@ use App\Events\Backend\Auth\User\UserPasswordChanged;
 use App\Notifications\Backend\Auth\UserAccountActive;
 use App\Events\Backend\Auth\User\UserPermanentlyDeleted;
 use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use App\Events\Backend\Shift\ShiftAssigned;
 
 /**
  * Class UserRepository.
@@ -357,5 +359,24 @@ class UserRepository extends BaseRepository
                 throw new GeneralException(trans('exceptions.backend.access.users.email_error'));
             }
         }
+    }
+
+    public function assignShift(User $user, array $data) : User
+    {
+        return DB::transaction(function () use ($user, $data) {
+            if ($user->update([
+                'shift_id' => $data['shift'],
+            ])) {
+                $auth_link = "<a href='".route('admin.auth.user.show', auth()->id())."'>".Auth::user()->full_name.'</a>';
+                $employee_link = "<a href='".route('admin.auth.user.show', $user->id)."'>".$user->full_name."</a>";
+                $asset_link = "<a href='".route('admin.shift.show', $user->shift->id)."'>".$user->shift->name."</a>";
+
+                event(new ShiftAssigned($auth_link, $employee_link, $asset_link));
+
+                return $user;
+            }
+
+            throw new GeneralException(__('exceptions.backend.access.users.update_error'));
+        });
     }
 }
