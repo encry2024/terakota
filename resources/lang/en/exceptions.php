@@ -95,6 +95,14 @@ return [
     ],
 
     'frontend' => [
+        'orders' => [
+            'already_exists'    => 'That order already exists. Please choose a different name.',
+            'create_error'      => 'There was a problem creating this order. Please try again.',
+            'delete_error'      => 'There was a problem deleting this order. Please try again.',
+            'not_found'         => 'That order does not exist.',
+            'update_error'      => 'There was a problem updating this order. Please try again.',
+        ],
+
         'auth' => [
             'confirmation' => [
                 'already_confirmed' => 'Your account is already confirmed.',

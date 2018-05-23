@@ -2,43 +2,13 @@
 
 @section('content')
 <div class="row mb-4">
-    <div class="col-lg-2">
-        <!-- Left Menu -->
-        <div class="row">
-            <div class="col">
-                <label for="order_type_container">TABLE:</label>
-                <input type="text" class="form-control text-right rounded-0" readOnly value="{{ $dining->name }}">
-            </div><!-- col -->
-        </div><!-- row -->
-        <hr>
-        <div class="row">
-            <div class="col">
-                <label for="order_type_container">CUSTOMER:</label>
-                <div class="btn-group-toggle btn-group-vertical col-lg-12" data-toggle="buttons" id="order_type_container">
-                    <label class="btn btn-info rounded-0" style="padding: 15px;">
-                        <input type="radio" autocomplete="off"> DINE-IN
-                    </label>
-
-                    <label class="btn btn-info rounded-0" style="padding: 15px;">
-                        <input type="radio" autocomplete="off"> TAKE-OUT
-                    </label>
-
-                    <label class="btn btn-info rounded-0" style="padding: 15px;">
-                        <input type="radio" autocomplete="off"> SALARY DEDUCT
-                    </label>
-
-                    <label class="btn btn-info rounded-0" style="padding: 15px;">
-                        <input type="radio" autocomplete="off"> ACKNOWLEDGE
-                    </label>
-                </div><!-- btn-group-toggle -->
-            </div><!-- col -->
-        </div><!-- row -->
-    </div><!-- col-lg-2 -->
-
+    <div id="ajaxSpinnerContainer">
+        <div id="ajaxSpinner"></div>
+    </div>
     <!-- Product List -->
-    <div class="col-lg-7">
-        <div class="row">
-            <div class="nav flex-column nav-pills rounded-0" role="tablist" aria-orientation="vertical">
+    <div class="col-lg-9">
+        <div class="row" style="padding-top: 1rem;">
+            <div class="nav flex-column nav-pills rounded-0 ml-2" role="tablist" aria-orientation="vertical">
                 <a class="nav-link pt-3 pb-3 active rounded-0"
                     id="pills-all-tab"
                     data-toggle="pill"
@@ -69,7 +39,7 @@
                     aria-labelledby="v-pills-all-tab">
                     <div class="col five-btns">
                         @foreach ($products as $product)
-                        <button type="button" class="btn btn-dark bg-product rounded-0 btn-product"
+                        <button type="button" class="btn btn-outline-white rounded-0"
                             data-toggle="modal"
                             data-target="#product_modal"
                             data-name="{{ ucwords($product->name) }}";
@@ -97,7 +67,7 @@
                         aria-labelledby="v-pills-{{ strtolower(str_replace(' ', '-', $category->name)) }}-tab">
                         <div class="col five-btns">
                             @foreach ($category->products as $product)
-                            <button type="button" class="btn btn-dark bg-product rounded-0 btn-product"
+                            <button type="button" class="btn btn-outline-white rounded-0"
                                 data-toggle="modal"
                                 data-target="#product_modal"
                                 data-name="{{ ucwords($product->name) }}";
@@ -122,22 +92,69 @@
     </div><!-- col-lg-7 -->
 
     <div class="col-lg-3">
-        <div class="card rounded-0">
-            <div class="card-body order-body" id="order_container">
-                <table class="table table-order">
-                    <thead>
-                        <th>PRODUCT</th>
-                        <th>QTY</th>
-                        <th>COST</th>
-                    </thead>
+        <div class="sidebar-fixed">
+            <div class="order">
+                <div class="sidebar">
+                    <div class="card rounded-0" style="height: 100%;">
+                        <div class="card-header">
+                            <h6 style="font-weight: 300px;">Table #
+                            <span class="float-right" style="font-size: 14px;">{{ $dining->name }}</span>
+                            </h6>
 
-                    <tbody id="order-container">
-                    </tbody>
-                </table>
-            </div><!-- card-body -->
-        </div><!-- card -->
+                        </div>
+                        <div class="card-body order-body">
+                            <div class="list-group border-0" id="product-body" style="height: 450px; overflow-y: scroll;">
+
+                            </div>
+                        </div><!-- card-body -->
+                        <div class="card-body border-top pt-0 pb-0">
+                            <h5 class="fw-3">Total Amount: <span class="float-right" id="total_amount"></span></h5>
+                        </div><!-- card-body -->
+                        <div class="card-body border-top pt-0 pb-0">
+                            <div class="pt-3 pb-0">
+                            <a href="{{ route('frontend.user.dashboard') }}" class="btn-dark btn-lg fw-3 btn">Cancel</a>
+                            <button class="btn-dark btn-lg fw-3 btn" name="checkout_btn" data-toggle="modal" data-target="#check_out_modal">Check-out</button>
+                            <button class="btn-dark btn-lg fw-3 btn" name="print_btn">Print</button>
+                            <a href="{{ route('frontend.user.dashboard') }}" class="btn-dark btn-lg fw-3 mt-1 btn">Dispose</a>
+                            <button class="btn-dark btn-lg fw-3 btn mt-1" id="remove_btn">Remove</button>
+                            <a href="{{ route('frontend.user.dashboard') }}" class="btn-dark btn-lg fw-3 mt-1 btn">Dashboard</a>
+                            </div>
+                        </div><!-- card-body -->
+                    </div><!-- card -->
+                </div>
+            </div><!-- Order -->
+        </div>
     </div><!-- col-lg-3 -->
 </div><!-- row -->
+
+<div class="modal fade bd-example-modal-sm printModal printable" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="check_out_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body official_receipt">
+                <br>
+                <div class="receipt">
+                    <p class="text-center fs-1">MANDA'S BULALUHAN & GRILL</p>
+                    <p class="text-center fs-1">#468 Barangka Drive, Brgy. Malamig</p>
+                    <p class="text-center fs-1">Mandaluyong City</p>
+                    <p class="text-center">TIN # 009-841-115</p>
+                </div>
+                <p class="text-center fs-1">{{ date('m/d/Y (l) H:i:s') }}</p>
+                <hr style="border-top: 1px dashed black">
+                <div class="receipt">
+                    <p>TABLE NO# 1</p>
+                    <p>RCPT#</p>
+                    <p>STAFF: ABC</p>
+                    <hr style="border-top: 1px dashed black">
+                </div>
+                <div class="receipt">
+                    <div class="receipt_orders">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @include('frontend.user.dashboard.modals')
 @endsection

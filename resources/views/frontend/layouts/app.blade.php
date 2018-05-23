@@ -32,8 +32,11 @@
     </head>
     <body>
         <div id="app">
+
             @include('includes.partials.logged-in-as')
+            @if (!Active::checkUriPattern('cashier/table*'))
             @include('frontend.includes.nav')
+            @endif
 
             <div class="container-fluid">
                 @include('includes.partials.messages')
@@ -49,14 +52,14 @@
         @include('includes.partials.ga')
 
         <script>
-        const numericField = document.getElementsByClassName('numeric-input');
+            const numericField = document.getElementsByClassName('numeric-input');
 
-        for(let elementIndex=0; elementIndex<numericField.length; elementIndex++) {
-            new Cleave(numericField[elementIndex], {
-                numeral: true,
-                numeralThousandsGroupStyle: 'thousand'
-            });
-        }
+            for(let elementIndex=0; elementIndex<numericField.length; elementIndex++) {
+                new Cleave(numericField[elementIndex], {
+                    numeral: true,
+                    numeralThousandsGroupStyle: 'thousand'
+                });
+            }
         </script>
     </body>
 </html>

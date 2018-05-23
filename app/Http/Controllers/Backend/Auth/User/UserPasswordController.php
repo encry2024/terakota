@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Auth\UserRepository;
 use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use App\Http\Requests\Backend\Auth\User\UpdateUserPasswordRequest;
+use Hash;
 
 /**
  * Class UserPasswordController.

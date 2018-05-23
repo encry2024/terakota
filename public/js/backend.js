@@ -52329,11 +52329,23 @@ function addDeleteForms() {
     }).removeAttr('href').attr('style', 'cursor:pointer;').attr('onclick', '$(this).find("form").submit();');
 }
 
+$(document).ajaxStart(function () {
+    $("#ajaxSpinnerContainer").show();
+}).ajaxError(function (event, jqxhr, settings, thrownError) {
+    $("#ajaxSpinnerContainer").hide();
+}).ajaxStop(function () {
+    $("#ajaxSpinnerContainer").hide();
+});
+
 /**
  * Place any jQuery/helper plugins in here.
  */
 $(function () {
     $("select").chosen();
+
+    Array.prototype.count = function (array) {
+        return this.length;
+    };
 
     /**
      * Add the data-method="delete" forms to all delete links

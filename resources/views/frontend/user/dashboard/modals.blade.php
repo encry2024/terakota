@@ -3,11 +3,19 @@
 <div class="modal rounded-0" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="product_modal">
     <div class="modal-dialog modal-lg rounded-0" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">Modal title</h5>
-            </div>
 
             <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <button name="order_type" data-value="0" class="btn btn-primary rounded-0 text-center">DINE-IN</button>
+                        <button name="order_type" data-value="1" class="btn btn-primary rounded-0">TAKE-OUT</button>
+                        <button name="order_type" data-value="2" class="btn btn-primary rounded-0">SALARY DEDUCT</button>
+                        <button name="order_type" data-value="3" class="btn btn-primary rounded-0">ACKNOWLEDGE</button>
+                    </div>
+                </div>
+
+                <hr>
+
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -67,6 +75,8 @@
                         <br><br>
                         <button id="cancel_btn" type="button" class="btn btn-secondary col-lg-12 rounded-0" style="padding: 25px 10px;" data-dismiss="modal">CANCEL</button>
                     </div>
+
+                    <div class="col"></div>
                 </div>
             </div>
         </div>

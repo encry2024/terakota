@@ -19,7 +19,6 @@ class Category extends Model
     ];
 
     protected $appends = [
-        'product_count',
         'category_name'
     ];
 }

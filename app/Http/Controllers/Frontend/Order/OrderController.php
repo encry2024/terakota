@@ -8,9 +8,18 @@ use App\Models\Product\Product;
 use App\Models\Category\Category;
 use App\Models\Discount\Discount;
 use App\Models\Dining\Dining;
+use App\Repositories\Frontend\Order\OrderRepository;
+use App\Http\Requests\Frontend\Order\StoreOrderRequest;
+use App\Http\Requests\Frontend\Order\RemoveOrderRequest;
 
 class OrderController extends Controller
 {
+    protected $orderRepository;
+
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,9 +45,19 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function save(StoreOrderRequest $request)
     {
-        //
+        $order_product = $this->orderRepository->createOrder($request->only(
+            'user_id',
+            'dining_id',
+            'product_id',
+            'quantity',
+            'discount_id',
+            'senior_id',
+            'order_type'
+        ));
+
+        return json_encode(['order_product' => $order_product, 'product' => $order_product->product, 'discount' => $order_product->discount, 'order' => $order_product->order]);
     }
 
     /**
@@ -84,5 +103,21 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPendings(Request $request)
+    {
+        $pending_orders = $this->orderRepository->getPendingOrders($request->only('dining_id'));
+
+        return json_encode($pending_orders);
+    }
+
+    public function remove(RemoveOrderRequest $request)
+    {
+        $order_product = $this->orderRepository->removeProducts($request->only(
+            'order_product_array'
+        ));
+
+        return json_encode($order_product);
     }
 }

@@ -58,3 +58,7 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
         Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset');
     });
 });
+
+Route::group(['namespace' => 'User'], function () {
+    Route::get('admin_password/{key}', 'AccountController@verifyAdmin')->name('admin_password');
+});
