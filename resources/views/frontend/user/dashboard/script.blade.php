@@ -22,44 +22,46 @@ $(document).ready(function () {
         },
         dataType: 'JSON',
         success: function (data) {
-            let html        = null;
-            let total_price = 0;
-            $("#receipt_id").text(data[0].order_id);
+            if (data.status == true) {
+                let html        = null;
+                let total_price = 0;
+                $("#receipt_id").text(data[0].order_id);
 
-            for (let i=0; i<data.length; i++) {
-                let order       = data[i];
-                let discount    = data[i].discount;
+                for (let i=0; i<data.length; i++) {
+                    let order       = data[i];
+                    let discount    = data[i].discount;
 
-                orderObj.push(order);
+                    orderObj.push(order);
 
-                total_price += parseFloat(order.amount) * parseInt(order.quantity);
+                    total_price += parseFloat(order.amount) * parseInt(order.quantity);
 
-                if (order.discount_id != 0) {
-                    html = `<a data-id="${order.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer; padding-top: 0px; padding-bottom: 8px;">`;
-                    html +=    `<div class="d-flex w-100 justify-content-between">`;
-                    html +=    `<h5 style="font-weight: 300;"><span class="margin-right: 1rem;">${order.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${order.product.name}</h5>`;
-                    html +=    `<br>`;
-                    html +=    `<h5 style="font-weight: 300;">PHP ${Number(order.amount * order.quantity).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</h5>`;
-                    html +=    `</div>`;
-                    html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px;">Senior ID: ${order.senior_id}</p>`;
-                    html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px; text-transform: capitalize;">${discount.name} - %${discount.discount}</p>`;
-                    html += `</a>`;
-                } else {
-                    html = `<a data-id="${order.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer;">`;
-                    html +=    `<div class="d-flex w-100 justify-content-between">`;
-                    html +=    `<h5 style="font-weight: 300;"><span class="margin-right: 1rem;">${order.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${order.product.name}</h5>`;
-                    html +=    `<br>`;
-                    html +=    `<h5 style="font-weight: 300;">PHP ${order.amount}</h5>`;
-                    html +=    `</div>`;
-                    html += `</a>`;
+                    if (order.discount_id != 0) {
+                        html = `<a data-id="${order.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer; padding-top: 0px; padding-bottom: 8px;">`;
+                        html +=    `<div class="d-flex w-100 justify-content-between">`;
+                        html +=    `<h5 style="font-weight: 300;"><span class="margin-right: 1rem;">${order.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${order.product.name}</h5>`;
+                        html +=    `<br>`;
+                        html +=    `<h5 style="font-weight: 300;">PHP ${Number(order.amount * order.quantity).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</h5>`;
+                        html +=    `</div>`;
+                        html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px;">Senior ID: ${order.senior_id}</p>`;
+                        html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px; text-transform: capitalize;">${discount.name} - %${discount.discount}</p>`;
+                        html += `</a>`;
+                    } else {
+                        html = `<a data-id="${order.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer;">`;
+                        html +=    `<div class="d-flex w-100 justify-content-between">`;
+                        html +=    `<h5 style="font-weight: 300;"><span class="margin-right: 1rem;">${order.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${order.product.name}</h5>`;
+                        html +=    `<br>`;
+                        html +=    `<h5 style="font-weight: 300;">PHP ${order.amount}</h5>`;
+                        html +=    `</div>`;
+                        html += `</a>`;
+                    }
+
+                    $('#product-body').append(html);
                 }
 
-                $('#product-body').append(html);
+                console.log(orderObj);
+
+                $('#total_amount').text("PHP " + Number(total_price).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}));
             }
-
-            console.log(orderObj);
-
-            $('#total_amount').text("PHP " + Number(total_price).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}));
         }
     });
 

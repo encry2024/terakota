@@ -37,7 +37,7 @@ return [
             'create'              => 'Create discount',
             'deleted'             => 'Deleted discounts',
             'edit'                => 'Edit discount',
-            'management'          => 'discount Management',
+            'management'          => 'Discount Management',
             'list'                => 'discount List',
 
             'table' => [

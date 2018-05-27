@@ -42,9 +42,14 @@ class OrderRepository extends BaseRepository
             ->orderBy('created_at', 'desc')
             ->first();
 
-        $order_products = OrderProduct::with(['product', 'discount', 'order'])->where('order_id', $order->id)->get();
+        if (count($order) != 0) {
+            $order_products = OrderProduct::with(['product', 'discount', 'order'])->where('order_id', $order->id)->get();
 
-        return $order_products;
+            return ['status' => true, $order_products];
+        }
+
+        return ['status' => false];
+
     }
 
     /**
@@ -79,7 +84,7 @@ class OrderRepository extends BaseRepository
                 ->orderBy('created_at', 'desc')
                 ->first();
 
-            if (count($order) == 0) {
+            if (!$order) {
                 $new_order = parent::create([
                     'user_id' => Auth::user()->id,
                     'dining_id' => $dining->id
@@ -105,7 +110,7 @@ class OrderRepository extends BaseRepository
                         }
                     } else {
                         $order_product = OrderProduct::create([
-                            'order_id' => $order->id,
+                            'order_id' => $new_order->id,
                             'product_id' => $data['product_id'],
                             'quantity' => $data['quantity'],
                             'amount' => $product->price,

@@ -121,7 +121,7 @@ return [
 
         'backend' => [
             'discounts' => [
-                'name'          => 'Dining Name',
+                'name'          => 'Discount Name',
                 'discount'      => 'Discount'
             ],
 
