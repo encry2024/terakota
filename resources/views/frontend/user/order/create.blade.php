@@ -127,9 +127,9 @@
     </div><!-- col-lg-3 -->
 </div><!-- row -->
 
-<div class="modal fade bd-example-modal-sm printModal printable" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="check_out_modal">
+<div class="modal fade bd-example-modal-sm printModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="check_out_modal">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content printable">
             <div class="modal-body official_receipt">
                 <br>
                 <div class="receipt">
@@ -142,15 +142,20 @@
                 <hr style="border-top: 1px dashed black">
                 <div class="receipt">
                     <p>TABLE NO# 1</p>
-                    <p>RCPT#</p>
-                    <p>STAFF: ABC</p>
+                    <p>RCPT# <span id="receipt_id"></span></p>
+                    <p>STAFF: {{ $logged_in_user->full_name }}</p>
                     <hr style="border-top: 1px dashed black">
                 </div>
                 <div class="receipt">
-                    <div class="receipt_orders">
+                    <div class="receipt_orders" id="customer_order_list">
                         <p></p>
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success">
+                    Check-out
+                </button>
             </div>
         </div>
     </div>

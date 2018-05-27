@@ -13,7 +13,7 @@ $(document).ready(function () {
         orderObj        = [];
 
     // Load pending orders if this dining table's status is pending
-    let getData = $.ajax({
+    $.ajax({
         type: "POST",
         url: "{{ route('frontend.cashier.order.get_pendings', $dining->id) }}",
         data: {
@@ -22,8 +22,9 @@ $(document).ready(function () {
         },
         dataType: 'JSON',
         success: function (data) {
-            let html = null;
+            let html        = null;
             let total_price = 0;
+            $("#receipt_id").text(data[0].order_id);
 
             for (let i=0; i<data.length; i++) {
                 let order       = data[i];
@@ -109,7 +110,7 @@ $(document).ready(function () {
             discountLabel   = discountBtn.data('discount-title');
 
         // Get discount value
-        discount = discountBtn.data('value');
+        discount    = discountBtn.data('value');
         discount_id = discountBtn.data('discount_id');
 
         // If discount title is senior_citizen
@@ -171,8 +172,8 @@ $(document).ready(function () {
                             type: 'error',
                             showCancelButton: true
                         }).then((result) => {
-                            discount = 0;
-                            let total = computePrice(quantity, product_price, discount);
+                            discount    = 0;
+                            let total   = computePrice(quantity, product_price, discount);
 
                             $("label[name=discount_label]").removeClass("active");
                             $("label[data-discount-title=no_discount]").addClass("active");
@@ -216,7 +217,6 @@ $(document).ready(function () {
         let html = "";
         let total_price = 0;
 
-        console.log(senior_id);
         $.ajax({
             type: "POST",
             url: "{{ route('frontend.cashier.order.save', $dining->id) }}",
@@ -237,15 +237,11 @@ $(document).ready(function () {
                 product = data.product,
                 order = data.order;
 
-                console.log(data);
-
                 orderObj.push({
                     id: order_product.id,
                     amount: order_product.amount,
                     quantity: order_product.quantity
                 });
-
-                console.log(orderObj);
 
                 for (let i=0; Object.keys(orderObj).length > i; i++) {
                     const order = orderObj[i];
@@ -281,6 +277,19 @@ $(document).ready(function () {
         });
     }).on('click', 'button[id=cancel_btn]', function () {
         clearValues();
+    });
+
+    $('#check_out_modal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget);
+
+        for (let i=0; i<Object.keys(orderObj).length; i++) {
+            let data = orderObj[i];
+            let product = data.product;
+
+            html = `<p class="padding-top: 1px;">${product.name}</p>`;
+
+            $("#customer_order_list").append(html);
+        }
     });
 
     $('#product-body').on('click', "a[name=customer_order]", function () {

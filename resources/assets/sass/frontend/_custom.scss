@@ -243,15 +243,15 @@ body {
 }
 
 .selected_order {
-    background-color: #740000;
-    border-color: #5b0000;
+    background-color: #740000 !important;
+    border-color: #5b0000 !important;
     color: white !important;
 }
 
 #customer_order:hover {
-    background-color: #740000;
-    border-color: #5b0000;
-    color: white !important;
+    background-color: #ddd;
+    border-color: #ccc;
+    color: black;
 }
 
 .order {
@@ -349,11 +349,11 @@ body {
     }
 
 	.official_receipt {
-		width: 240px;
+		// width: 240px;
     }
 
 	#printable {
-		// width: 240px;
+		width: 240px;
 		font-size: 12px;
 		font-weight: bold;
 		visibility: visible;
