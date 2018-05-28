@@ -42,13 +42,9 @@ class OrderRepository extends BaseRepository
             ->orderBy('created_at', 'desc')
             ->first();
 
-        if (count($order) != 0) {
             $order_products = OrderProduct::with(['product', 'discount', 'order'])->where('order_id', $order->id)->get();
 
-            return ['status' => true, $order_products];
-        }
-
-        return ['status' => false];
+            return $order_products;
 
     }
 
