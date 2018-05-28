@@ -34,7 +34,7 @@
         <div id="app">
 
             @include('includes.partials.logged-in-as')
-            @if (!Active::checkUriPattern('cashier/table*'))
+            @if (!Active::checkUriPattern('cashier/order*'))
             @include('frontend.includes.nav')
             @endif
 

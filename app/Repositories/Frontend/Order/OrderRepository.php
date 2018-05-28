@@ -37,15 +37,14 @@ class OrderRepository extends BaseRepository
      */
     public function getPendingOrders(array $data)
     {
-        $order = Order::where('dining_id', $data['dining_id'])
+        $order = Order::where('id', $data['order_id'])
             ->whereStatus('PENDING')
             ->orderBy('created_at', 'desc')
             ->first();
 
-            $order_products = OrderProduct::with(['product', 'discount', 'order'])->where('order_id', $order->id)->get();
+        $order_products = OrderProduct::with(['product', 'discount', 'order'])->where('order_id', $order->id)->get();
 
-            return $order_products;
-
+        return ['ordered_products' => $order_products, 'order' => $order];
     }
 
     /**
@@ -70,63 +69,16 @@ class OrderRepository extends BaseRepository
      * @throws \Exception
      * @throws \Throwable
      */
-    public function createOrder(array $data) : OrderProduct
+    public function createOrder(Order $order, array $data) : OrderProduct
     {
-        return DB::transaction(function () use ($data) {
-            $dining = Dining::find($data['dining_id']);
+        return DB::transaction(function () use ($order, $data) {
+            $discount   = Discount::find($data['discount_id']);
+            $order      = Order::find($order->id);
 
-            $order = Order::where('dining_id', $dining->id)
-                ->whereStatus('PENDING')
-                ->orderBy('created_at', 'desc')
-                ->first();
+            if ($discount) {
+                $product    = Product::find($data['product_id']);
 
-            if (!$order) {
-                $new_order = parent::create([
-                    'user_id' => Auth::user()->id,
-                    'dining_id' => $dining->id
-                ]);
-
-                if ($new_order) {
-                    $product = Product::find($data['product_id']);
-                    $discount = Discount::find($data['discount_id']);
-
-                    if ($discount) {
-                        $order_product = OrderProduct::create([
-                            'order_id' => $order->id,
-                            'product_id' => $data['product_id'],
-                            'quantity' => $data['quantity'],
-                            'amount' => $product->price - ($product->price * ($discount->discount / 100)),
-                            'discount_id' => $data['discount_id'] == 0 ? 0 : $data['discount_id'],
-                            'senior_id' => $data['senior_id'],
-                            'order_type' => $data['order_type']
-                        ]);
-
-                        if ($order_product) {
-                            return $order_product;
-                        }
-                    } else {
-                        $order_product = OrderProduct::create([
-                            'order_id' => $new_order->id,
-                            'product_id' => $data['product_id'],
-                            'quantity' => $data['quantity'],
-                            'amount' => $product->price,
-                            'discount_id' => $data['discount_id'] == 0 ? 0 : $data['discount_id'],
-                            'senior_id' => $data['senior_id'],
-                            'order_type' => $data['order_type']
-                        ]);
-
-                        if ($order_product) {
-                            return $order_product;
-                        }
-                    }
-                }
-
-                throw new GeneralException(__('exceptions.backend.categories.create_error'));
-            } else {
-                $product = Product::find($data['product_id']);
-                $discount = Discount::find($data['discount_id']);
-
-                if ($discount) {
+                if ($product) {
                     $order_product = OrderProduct::create([
                         'order_id' => $order->id,
                         'product_id' => $data['product_id'],
@@ -141,6 +93,12 @@ class OrderRepository extends BaseRepository
                         return $order_product;
                     }
                 } else {
+                    return false;
+                }
+            } else {
+                $product    = Product::find($data['product_id']);
+
+                if ($product) {
                     $order_product = OrderProduct::create([
                         'order_id' => $order->id,
                         'product_id' => $data['product_id'],
@@ -154,10 +112,45 @@ class OrderRepository extends BaseRepository
                     if ($order_product) {
                         return $order_product;
                     }
+                } else {
+                    return false;
                 }
-
-                throw new GeneralException(__('exceptions.backend.categories.create_error'));
             }
+
+            throw new GeneralException('Something went wrong when saving an order. Contact the developer for inspection.');
+        });
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Order
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function storeOrder(array $data) : Order
+    {
+        return DB::transaction(function () use ($data) {
+            $dining_id = $data['dining_id'];
+
+            $find_order = Order::where('dining_id', $dining_id)
+                ->whereStatus('PENDING')
+                ->first();
+
+            if (! $find_order) {
+                $order = parent::create([
+                    'user_id'   => Auth::user()->id,
+                    'dining_id' => $data['dining_id']
+                ]);
+
+                if ($order) {
+                    return $order;
+                }
+            } else {
+                return $find_order;
+            }
+
+            throw new GeneralException('Something went wrong when creating the order. Contact the developer for inspection.');
         });
     }
 
@@ -175,6 +168,36 @@ class OrderRepository extends BaseRepository
 
                 {
                     $order_product->delete();
+                }
+            }
+        });
+    }
+
+    public function cancel(Order $order) : Order
+    {
+        return DB::transaction(function () use ($order) {
+            $i = 0;
+            $order = Order::where('id', $order->id)
+                ->where('status', 'PENDING')
+                ->first();
+
+            if ($order) {
+                $order_products = OrderProduct::where('order_id', $order->id)->get();
+
+                if (count($order_products) >= $i) {
+                    foreach ($order_products as $order_product) {
+                        if ($order_product->update(['status' => 'CANCELLED'])) {
+                            $i++;
+                        }
+                    }
+                }
+
+                if (count($order_products) == $i) {
+                    $validate = $order->update(['status' => 'CANCELLED']);
+
+                    if ($validate) {
+                        return $order;
+                    }
                 }
             }
         });

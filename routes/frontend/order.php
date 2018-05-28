@@ -2,17 +2,21 @@
 Route::group(['middleware' => 'auth'], function () {
     Route::group([
         'namespace' => 'Order',
-        'prefix'    =>  'cashier',
-        'as'        => 'cashier.order.',
+        'prefix'    => 'cashier',
+        'as'        => 'cashier.',
     ], function () {
         /*
         * Cashier POS Specific
         */
-        Route::get('table/{dining}/order/create', 'OrderController@create')->name('create');
+        Route::get('order/{order}/dining/{dining}/create', 'OrderController@create')->name('order.create_order');
 
-        Route::post('table/{dining}/order/pending', 'OrderController@getPendings')->name('get_pendings');
-        Route::post('table/{dining}/order/save', 'OrderController@save')->name('save');
+        Route::post('order/{order}/pending', 'OrderController@getPendings')->name('order.get_pendings');
+        Route::post('order/{order}/save', 'OrderController@save')->name('order.save');
+        Route::post('order/dining/check_availability', 'OrderController@orderCheckAvailability')->name('order.check_availability');
+        Route::post('order/{order}/cancel', 'OrderController@cancel')->name('order.cancel');
 
-        Route::delete('table/{dining}/order/remove', 'OrderController@remove')->name('remove_item');
+        Route::resource('order', 'OrderController');
+
+        Route::delete('table/{dining}/order/remove', 'OrderController@remove')->name('order.remove_item');
     });
 });

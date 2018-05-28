@@ -15,26 +15,30 @@ $(document).ready(function () {
     // Load pending orders if this dining table's status is pending
     $.ajax({
         type: "POST",
-        url: "{{ route('frontend.cashier.order.get_pendings', $dining->id) }}",
+        url: "{{ route('frontend.cashier.order.get_pendings', $order->id) }}",
         data: {
             _token: "{{ csrf_token() }}",
-            dining_id: "{{ $dining->id }}"
+            order_id: "{{ $order->id }}"
         },
         dataType: 'JSON',
         success: function (data) {
+            // ON LOAD
+            console.log(data);
+
             let html        = null;
             let total_price = 0;
-            $("#receipt_id").text(data[0].order_id);
+            $("#receipt_id").text(data.order.id);
 
-            for (let i=0; i<data.length; i++) {
-                let order       = data[i];
-                let discount    = data[i].discount;
+            for (let i=0; i<data.ordered_products.length; i++) {
+                let order       = data.ordered_products[i];
 
                 orderObj.push(order);
 
                 total_price += parseFloat(order.amount) * parseInt(order.quantity);
 
                 if (order.discount_id != 0) {
+                    let discount    = data[i].discount;
+
                     html = `<a data-id="${order.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer; padding-top: 0px; padding-bottom: 8px;">`;
                     html +=    `<div class="d-flex w-100 justify-content-between">`;
                     html +=    `<h5 style="font-weight: 300;"><span class="margin-right: 1rem;">${order.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${order.product.name}</h5>`;
@@ -219,7 +223,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "{{ route('frontend.cashier.order.save', $dining->id) }}",
+            url: "{{ route('frontend.cashier.order.save', $order->id) }}",
             data: {
                 _token: "{{ csrf_token() }}",
                 product_id: product_id,
@@ -233,15 +237,21 @@ $(document).ready(function () {
             dataType: 'JSON',
             success: function (data) {
                 const order_product = data.order_product,
-                discount = data.discount,
-                product = data.product,
-                order = data.order;
+                discount            = data.discount,
+                product             = data.product,
+                order               = data.order;
 
                 orderObj.push({
                     id: order_product.id,
                     amount: order_product.amount,
-                    quantity: order_product.quantity
+                    quantity: order_product.quantity,
+                    product: {
+                        name: product.name,
+                        price: product.price
+                    }
                 });
+                // Confirm Button...
+                console.log(orderObj)
 
                 for (let i=0; Object.keys(orderObj).length > i; i++) {
                     const order = orderObj[i];
@@ -275,7 +285,7 @@ $(document).ready(function () {
                 clearValues();
             }
         });
-    }).on('click', 'button[id=cancel_btn]', function () {
+    }).on('click', '#cancel_btn', function () {
         clearValues();
     });
 
@@ -286,7 +296,7 @@ $(document).ready(function () {
             let data = orderObj[i];
             let product = data.product;
 
-            html = `<p class="padding-top: 1px;">${product.name}</p>`;
+            html = `<p class="mb-0">${product.name}</p>`;
 
             $("#customer_order_list").append(html);
         }
@@ -390,6 +400,40 @@ $(document).ready(function () {
         $('button[name=order_type]').removeClass('active');
         button.addClass('active');
         order_type = button.data('value');
+    });
+
+    $('button[name=cancel_btn]').on('click', function () {
+        swal({
+            title: 'Cancel this order?',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            showCancelButton: true,
+            type: 'info'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('frontend.cashier.order.cancel', $order->id) }}",
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+
+                        swal({
+                            title: 'Order was successfully cancelled',
+                            confirmButtonText: 'Ok',
+                            type: 'success'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = "{{ route('frontend.user.dashboard') }}";
+                            }
+                        });
+                    }
+                });
+            }
+        });
     });
 
     function computePrice(quantity, product_price, discount) {

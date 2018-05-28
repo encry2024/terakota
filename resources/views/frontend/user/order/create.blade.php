@@ -112,12 +112,11 @@
                         </div><!-- card-body -->
                         <div class="card-body border-top pt-0 pb-0">
                             <div class="pt-3 pb-0">
-                            <a href="{{ route('frontend.user.dashboard') }}" class="btn-dark btn-lg fw-3 btn">Cancel</a>
                             <button class="btn-dark btn-lg fw-3 btn" name="checkout_btn" data-toggle="modal" data-target="#check_out_modal">Check-out</button>
                             <button class="btn-dark btn-lg fw-3 btn" name="print_btn">Print</button>
-                            <a href="{{ route('frontend.user.dashboard') }}" class="btn-dark btn-lg fw-3 mt-1 btn">Dispose</a>
-                            <button class="btn-dark btn-lg fw-3 btn mt-1" id="remove_btn">Remove</button>
-                            <a href="{{ route('frontend.user.dashboard') }}" class="btn-dark btn-lg fw-3 mt-1 btn">Dashboard</a>
+                            <button class="btn-dark btn-lg fw-3 btn" id="remove_btn">Remove</button>
+                            <button name="cancel_btn" class="btn-dark btn-lg fw-3 mt-1 btn w-47">Cancel</button>
+                            <a href="{{ route('frontend.user.dashboard') }}" class="btn-dark btn-lg fw-3 mt-1 btn w-39-25">Dashboard</a>
                             </div>
                         </div><!-- card-body -->
                     </div><!-- card -->
