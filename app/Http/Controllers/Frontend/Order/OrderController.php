@@ -79,6 +79,13 @@ class OrderController extends Controller
         return redirect()->route('frontend.cashier.order.create_order', ['dining' => $order->dining_id, 'order' => $order->id]);
     }
 
+    public function completeOrder(Order $order, CreateOrderRequest $request)
+    {
+        $order = $this->orderRepository->completeOrder($order);
+
+        return redirect()->route('frontend.dashboard');
+    }
+
     /**
      * Display the specified resource.
      *

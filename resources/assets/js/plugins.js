@@ -102,4 +102,10 @@ $(function(){
     $("#assign_shift_modal").on('shown.bs.modal', function () {
         $("#shift_dropdown").chosen("destroy").chosen();
     });
+
+    $("#filterModal").on('shown.bs.modal', function () {
+        $("#shift").chosen("destroy").chosen({allow_single_deselect: true});
+        $("#order_type").chosen("destroy").chosen({allow_single_deselect: true});
+        $("#sales_status").chosen("destroy").chosen({allow_single_deselect: true});
+    });
 });

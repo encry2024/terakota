@@ -10356,13 +10356,37 @@ h5 {
   margin-bottom: 0px;
 }
 
+.sub-info {
+  display: block;
+  margin-left: 2rem;
+}
+
 @media print {
   * {
     visibility: hidden;
   }
 
+  .modal-footer {
+    display: none;
+  }
+
+  button {
+    display: none;
+  }
+
   .modal-body {
     padding: 0;
+  }
+
+  .sub-info {
+    display: block;
+    margin-left: 2rem !important;
+  }
+
+  .official_receipt {
+    border: 1px solid #ddd !important;
+    margin-bottom: 2rem;
+    padding: 1rem !important;
   }
 
   #printable {

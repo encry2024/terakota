@@ -11,3 +11,4 @@ require __DIR__.'/category.php';
 require __DIR__.'/shift.php';
 require __DIR__.'/dining.php';
 require __DIR__.'/discount.php';
+require __DIR__.'/report.php';

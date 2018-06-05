@@ -5,11 +5,13 @@ namespace App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Order\Traits\Relationship\OrderProductRelationship;
+use App\Models\Order\Traits\Attribute\OrderProductAttribute;
 
 class OrderProduct extends Model
 {
     //
     use SoftDeletes,
+        OrderProductAttribute,
         OrderProductRelationship;
 
     protected $fillable = [
@@ -22,5 +24,9 @@ class OrderProduct extends Model
         'vat',
         'status',
         'order_type'
+    ];
+
+    protected $appends = [
+        'customer_type'
     ];
 }

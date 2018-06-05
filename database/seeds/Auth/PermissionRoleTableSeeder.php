@@ -66,6 +66,8 @@ class PermissionRoleTableSeeder extends Seeder
         Permission::create(['name' => 'store order']);
         Permission::create(['name' => 'remove item']);
 
+        Permission::create(['name' => 'view report']);
+
         // ALWAYS GIVE ADMIN ROLE ALL PERMISSIONS
         $admin->givePermissionTo('view backend');
 
@@ -103,6 +105,12 @@ class PermissionRoleTableSeeder extends Seeder
         $admin->givePermissionTo('delete discount');
         $admin->givePermissionTo('force delete discount');
         $admin->givePermissionTo('restore discount');
+
+        $user->givePermissionTo('store order');
+        $user->givePermissionTo('remove item');
+        $user->givePermissionTo('view report');
+
+        $admin->givePermissionTo('view report');
 
         // Assign Permissions to other Roles
         $executive->givePermissionTo('view backend');

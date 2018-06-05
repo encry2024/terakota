@@ -13,6 +13,7 @@
     <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
     <link rel="stylesheet" href="{{ asset('js/chosen_v1.8.3/chosen-bootstrap-css.css') }}">
     <link rel="stylesheet" href="{{ asset('js/chosen_v1.8.3/chosen.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.min.css') }}">
     @yield('meta')
 
     {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
@@ -24,6 +25,7 @@
 
     @stack('after-styles')
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.min.js') }}"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

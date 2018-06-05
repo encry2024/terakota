@@ -15714,3 +15714,61 @@ body {
   font-weight: 600;
 }
 
+.fs-1 {
+  font-size: 13px;
+}
+
+.fs-2 {
+  font-size: 15px;
+}
+
+.fs-3 {
+  font-size: 17px;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.table thead th:last-child {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+
+@media print {
+  .non-printable {
+    display: none;
+  }
+
+  .card {
+    border: none;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    border-right: none;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: none;
+  }
+
+  .card-title {
+    font-size: 2rem;
+    border-bottom: 1px solid #ddd;
+  }
+}
+

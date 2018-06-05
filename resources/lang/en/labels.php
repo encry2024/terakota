@@ -33,6 +33,28 @@ return [
     ],
 
     'backend' => [
+        'sales' => [
+            'management'          => 'Sales Report',
+
+            'table' => [
+                'id'            =>  'Sale Count',
+                'name'          =>  'Cashier',
+                'dining'        =>  'TBL #',
+                'product'       =>  'Product',
+                'discount'      =>  'Discount',
+                'senior'        =>  'Senior ID',
+                'quantity'      =>  'Quantity',
+                'amount'        =>  'Amount',
+                'vat'           =>  'VAT',
+                'order'         =>  'Order Type',
+                'status'        =>  'Order Status',
+                'created_at'    =>  'Transaction Date',
+                'updated_at'    =>  'Updated At',
+                'deleted_at'    =>  'Deleted At',
+                'total'         =>  'sale total|sales total'
+            ],
+        ],
+
         'discounts' => [
             'create'              => 'Create discount',
             'deleted'             => 'Deleted discounts',

@@ -34,6 +34,10 @@
             </li>
 
             @if ($logged_in_user->isAdmin())
+                <li class="nav-item">
+                    <a class="nav-link {{ active_class(Active::checkUriPattern('admin/report*')) }}" href="{{ route('admin.report.sales.index') }}"><i class="icon-bag"></i> {{ __('menus.backend.sidebar.report') }}</a>
+                </li>
+
                 <li class="nav-item nav-dropdown {{ active_class(Active::checkUriPattern('admin/auth*'), 'open') }}">
                     <a class="nav-link nav-dropdown-toggle" href="#">
                         <i class="icon-user"></i> {{ __('menus.backend.access.title') }}

@@ -13,7 +13,7 @@ use Auth;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
-use phpDocumentor\Reflection\Types\Integer;
+
 
 /**
  * Class OrderRepository.
@@ -194,6 +194,37 @@ class OrderRepository extends BaseRepository
 
                 if (count($order_products) == $i) {
                     $validate = $order->update(['status' => 'CANCELLED']);
+
+                    if ($validate) {
+                        return $order;
+                    }
+                }
+            }
+        });
+    }
+
+    public function completeOrder(Order $order) : Order
+    {
+        $i = 0;
+
+        return DB::transaction(function () use ($order, $i) {
+            $order = Order::where('id', $order->id)
+                ->where('status', 'PENDING')
+                ->first();
+
+            if ($order) {
+                $order_products = OrderProduct::where('order_id', $order->id)->get();
+
+                if (count($order_products) >= $i) {
+                    foreach ($order_products as $order_product) {
+                        if ($order_product->update(['status' => 'SALE'])) {
+                            $i++;
+                        }
+                    }
+                }
+
+                if (count($order_products) == $i) {
+                    $validate = $order->update(['status' => 'SALE', 'user_id' => Auth::user()->id]);
 
                     if ($validate) {
                         return $order;

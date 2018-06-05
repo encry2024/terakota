@@ -14,6 +14,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('order/{order}/save', 'OrderController@save')->name('order.save');
         Route::post('order/dining/check_availability', 'OrderController@orderCheckAvailability')->name('order.check_availability');
         Route::post('order/{order}/cancel', 'OrderController@cancel')->name('order.cancel');
+        Route::post('order/{order}/complete_order', 'OrderController@completeOrder')->name('order.complete_order');
 
         Route::resource('order', 'OrderController');
 

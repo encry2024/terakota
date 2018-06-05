@@ -7,7 +7,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        <button name="order_type" data-value="0" class="btn btn-primary rounded-0 text-center">DINE-IN</button>
+                        <button name="order_type" data-value="0" class="btn btn-primary rounded-0 text-center active">DINE-IN</button>
                         <button name="order_type" data-value="1" class="btn btn-primary rounded-0">TAKE-OUT</button>
                         <button name="order_type" data-value="2" class="btn btn-primary rounded-0">SALARY DEDUCT</button>
                         <button name="order_type" data-value="3" class="btn btn-primary rounded-0">ACKNOWLEDGE</button>

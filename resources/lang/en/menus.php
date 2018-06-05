@@ -14,6 +14,15 @@ return [
     */
 
     'backend' => [
+        'sales' => [
+            'title'      => 'Sale',
+
+            'all'        => 'All Sales',
+            'management' => 'Sales Report Management',
+            'main'       => 'Sales',
+            'filter'     => 'Filter Sales',
+        ],
+
         'discounts' => [
             'title' => 'Discount',
 
@@ -104,6 +113,7 @@ return [
         ],
 
         'sidebar' => [
+            'report'    => 'Sales Report',
             'category'  => 'Categories',
             'shift'     => 'Shifts',
             'dining'    => 'Dinings',
