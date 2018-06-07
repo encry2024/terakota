@@ -39,7 +39,7 @@
                         {{ html()->label(__('validation.attributes.backend.dinings.price'))->class('col-md-2 form-control-label')->style('line-height: 3')->for('price') }}
 
                         <div class="col-md-10">
-                            {{ html()->time('price')
+                            {{ html()->text('price')
                                 ->class('form-control numeric-input')
                                 ->placeholder(__('validation.attributes.backend.dinings.price'))
                                 ->attribute('maxlength', 191)
@@ -51,7 +51,7 @@
                         {{ html()->label(__('validation.attributes.backend.dinings.description'))->class('col-md-2 form-control-label')->style('line-height: 3')->for('description') }}
 
                         <div class="col-md-10">
-                            {{ html()->time('description')
+                            {{ html()->text('description')
                                 ->class('form-control')
                                 ->placeholder(__('validation.attributes.backend.dinings.description'))
                                 ->attribute('maxlength', 191)

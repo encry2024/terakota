@@ -47,7 +47,7 @@ class ReportRepository extends BaseRepository
         $end_date   = date('Y-m-d', strtotime($endingDate));
         $end_time   = date('H:i:s', strtotime($endingTime));
 
-        $query = new OrderProduct;
+        $query = $this->model;
 
         if ($orderType != null) {
             $query = $query->where('order_type', $orderType);
