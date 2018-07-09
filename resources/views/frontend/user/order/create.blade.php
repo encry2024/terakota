@@ -112,7 +112,7 @@
                         </div><!-- card-body -->
                         <div class="card-body border-top pt-0 pb-0">
                             <div class="pt-3 pb-0">
-                            <button class="btn-dark btn-lg fw-3 btn" name="checkout_btn" data-toggle="modal" data-target="#chargeSaveModal">Bill Out</button>
+                            <button class="btn-dark btn-lg fw-3 btn" name="checkout_btn" data-toggle="modal" data-target="#charge_modal">Bill Out</button>
                             <button class="btn-dark btn-lg fw-3 btn" name="print_btn">Print</button>
                             <button class="btn-dark btn-lg fw-3 btn" id="remove_btn">Remove Item</button>
                             <button name="cancel_btn" class="btn-dark btn-lg fw-3 mt-1 btn w-47">Cancel OR</button>
@@ -127,7 +127,7 @@
 </div><!-- row -->
 
 <!-- Modal -->
-<div id="chargeSaveModal" class="modal fade" role="dialog">
+<div id="charge_modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
