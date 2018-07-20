@@ -44,7 +44,7 @@
                         html +=    `<h5 style="font-weight: 300;">PHP ${Number(order.amount * order.quantity).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</h5>`;
                         html +=    `</div>`;
                         html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px;">Senior ID: ${order.senior_id}</p>`;
-                        html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px; text-transform: capitalize;">${discount.name} - %${discount.discount}</p>`;
+                        html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px; text-transform: capitalize;">${discount.name} - ${discount.discount}%</p>`;
                         html += `</a>`;
                     } else {
                         html = `<a data-id="${order.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer;">`;
@@ -265,7 +265,7 @@
                             html +=    `<h5 style="font-weight: 300;">PHP ${order_product.amount}</h5>`;
                             html +=    `</div>`;
                             html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px;">Senior ID: ${order_product.senior_id}</p>`;
-                            html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px; text-transform: capitalize;">${discount.name} - %${discount.discount}</p>`;
+                            html +=    `<p class="mb-1" style="font-weight: 300; font-size: 14px; text-transform: capitalize;">${discount.name} - ${discount.discount}%</p>`;
                             html += `</a>`;
                         } else {
                             html = `<a data-id="${order_product.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer;">`;
@@ -322,7 +322,7 @@
             }
 
             $('#charge_modal').hide();
-            modal.find('#vat').text(parseFloat(computeTotalAmount().total.total_amount_with_vat).toFixed(2));
+            modal.find('#vat').text(parseFloat(computeTotalAmount().total.vatable).toFixed(2));
             modal.find('#total').text(Number(computeTotalAmount().total.total_price_with_table).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
             modal.find('#cash').text(Number($('#charge_modal').find('#cash').val()).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
             modal.find('#change_due').text(Number($('#charge_modal').find('#change').val()).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
@@ -349,8 +349,10 @@
                 modal.find('#payable_order').val('0.00');
             }
 
-            modal.find('#vat').val(parseFloat(computeTotalAmount().total.total_amount_with_vat).toFixed(2));
-            modal.find('#total_amount_due').val(parseFloat(computeTotalAmount().total.total_price_with_table).toFixed(2));
+            parseFloat(parseFloat(computeTotalAmount().total.total_price_with_table) + parseFloat(computeTotalAmount().total_amount_with_vat)).toFixed(2)
+
+            modal.find('#vat').val(parseFloat(computeTotalAmount().total.vatable).toFixed(2));
+            modal.find('#total_amount_due').val(parseFloat(computeTotalAmount().total.total_amount_with_vat).toFixed(2));
         });
 
         $('#product-body').on('click', "a[name=customer_order]", function () {
@@ -523,15 +525,14 @@
             }
 
             vatable                 = parseFloat(total_price_per_ordered_product) / 1.12;
-
-            total_price_with_table  = vatable + parseFloat(dining_cost);
-
-            total_amount_with_vat   =  (parseFloat(total_price_per_ordered_product) - parseFloat(vatable));
+            amount_vatted           = parseFloat(total_price_per_ordered_product) - parseFloat(vatable);
+            total_amount_with_vat   = parseFloat(total_price_per_ordered_product) + parseFloat(amount_vatted);
+            total_price_with_table  = parseFloat(vatable) + parseFloat(dining_cost);
 
             return {
                 total: {
                     total_amount: total_price_per_ordered_product,
-                    vatable: vatable,
+                    vatable: amount_vatted,
                     total_price_with_table: total_price_with_table,
                     total_amount_with_vat: total_amount_with_vat
                 }
