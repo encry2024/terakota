@@ -260,7 +260,7 @@
                     if (order_product.discount_id != 0) {
                             html = `<a data-id="${order_product.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer; padding-top: 0px; padding-bottom: 8px;">`;
                             html +=    `<div class="d-flex w-100 justify-content-between">`;
-                            html +=    `<h5 style="font-weight: 300;"><span class="margin-right: 1rem;">${order_product.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${product.name}</h5>`;
+                            html +=    `<h5 style="font-weight: 300; font-size: 14px !important;"><span class="margin-right: 1rem;">${order_product.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${product.name}</h5>`;
                             html +=    `<br>`;
                             html +=    `<h5 style="font-weight: 300;">PHP ${order_product.amount}</h5>`;
                             html +=    `</div>`;
@@ -270,7 +270,7 @@
                         } else {
                             html = `<a data-id="${order_product.id}" name="customer_order" id="customer_order" class="list-group-item list-group-item-action flex-column align-items-start border-0 rounded-0" style="margin-bottom: 1px; cursor: pointer;">`;
                             html +=    `<div class="d-flex w-100 justify-content-between">`;
-                            html +=    `<h5 style="font-weight: 300;"><span class="margin-right: 1rem;">${order_product.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${product.name}</h5>`;
+                            html +=    `<h5 style="font-weight: 300; font-size: 14px !important;"><span class="margin-right: 1rem;">${order_product.quantity} <span style="font-size: 14px; font-weight: 300;">pc(s).</span> </span> ${product.name}</h5>`;
                             html +=    `<br>`;
                             html +=    `<h5 style="font-weight: 300;">PHP ${order_product.amount}</h5>`;
                             html +=    `</div>`;
@@ -299,6 +299,8 @@
                 let data = orderObj[i];
                 let product = data.product;
 
+                console.log(data);
+
                 if (data.discount_id == 0) {
                     html = `
                     <p class="mb-0">
@@ -313,7 +315,7 @@
                             ${product.name}
                             <span class="float-right">${data.amount}</span>
                             <span class="sub-info">${product.price} x ${data.quantity} pc(s)</span>
-                            <span class="sub-info">${data.discount.name} - ${data.discount.discount}%</span>
+                            <span class="sub-info">${data} - ${data}%</span>
                         </p>
                     `;
                 }

@@ -10163,6 +10163,10 @@ body {
   padding-left: 10px;
 }
 
+#customer_order {
+  background-color: #007ACC;
+}
+
 .w-85 {
   width: 85%;
 }
@@ -10261,9 +10265,9 @@ body {
 }
 
 #customer_order:hover {
-  background-color: #ddd;
-  border-color: #ccc;
-  color: black;
+  background-color: #005c99;
+  border-color: #004c80;
+  color: white;
 }
 
 .order {
@@ -10285,7 +10289,7 @@ body {
 }
 
 .order > .sidebar > .card > .card-body > .section {
-  border-top: 1px solid #ddd;
+  border-top: 1px ridge #303030;
 }
 
 .order > .sidebar > .card > .card-body > .section > .btn {

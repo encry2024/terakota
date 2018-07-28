@@ -30,7 +30,7 @@
                 @endforeach
             </div>
 
-            <div class="tab-content w-80" id="v-pills-tabContent">
+            <div class="tab-content w-80" id="v-pills-tabContent" style="background-color: coral; margin-left: 12px;">
                 @if (count($products))
                 <div
                     class="tab-pane fade show active"
@@ -95,7 +95,7 @@
         <div class="sidebar-fixed">
             <div class="order">
                 <div class="sidebar">
-                    <div class="card rounded-0" style="height: 100%;">
+                    <div class="card rounded-0" style="height: 100%; background-color: #202020; color: white;">
                         <div class="card-header">
                             <h6 style="font-weight: 300px;">Table #
                             <span class="float-right" style="font-size: 14px;">{{ $dining->name }}</span>
@@ -103,7 +103,7 @@
 
                         </div>
                         <div class="card-body order-body">
-                            <div class="list-group border-0" id="product-body" style="height: 450px; overflow-y: scroll;">
+                            <div class="list-group border-0" id="product-body" style="height: 450px; overflow-y: scroll; margin-left: -1px;">
 
                             </div>
                         </div><!-- card-body -->
